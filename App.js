@@ -1,36 +1,84 @@
-import * as React from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import Nav from './src/Nav';
+import Generate from './src/Generate';
+import ListItem from './src/listItem';
+import Input from './src/input';
+import PickerComponent from './src/picker';
+import ModalComponent from './src/modal';
 
-const instructions = Platform.select({
-  ios: `Press Cmd+R to reload,\nCmd+D or shake for dev menu`,
-  android: `Double tap R on your keyboard to reload,\nShake or press menu button for dev menu`,
-});
+export default class App extends Component {
+    state = {
+        nameOfApp: `Davo's awesome app`,
+        random: [42, 21, 666]
+    }
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.welcome}>Hello my lovely wife!</Text>
-      <Text style={styles.instructions}>To get started, edit App.js</Text>
-      <Text style={styles.instructions}>{instructions}</Text>
-    </View>
-  );
+    onAddRandom = () => {
+        const random = Math.floor(Math.random() * 100) + 1;
+        this.setState(prevState => {
+            return {
+                random: [...prevState.random, random]
+            }
+        })
+    }
+
+    onItemDelete = (position) => {
+        const newArray = this.state.random.filter((item, index) => {
+            return position != index;
+        })
+        this.setState({
+            random: newArray
+        })
+    }
+
+    render() {
+        return (
+            <ScrollView
+                style={{width:'100%'}}
+                // onContentSizeChange={ (w,h)=> alert(w+', '+h)}
+                // onMomentumScrollBegin={ ()=> alert()}
+                // onMomentumScrollEnd={ ()=> alert('end')}
+            >
+                <View style={styles.container}>
+
+                    <Input />
+
+                    <Nav name={this.state.nameOfApp} />
+                    <View style={styles.basicView}>
+                        <View style={styles.basicView}>
+                            <Text style={styles.basicText}>Saluton Mondo</Text>
+                        </View>
+                    </View>
+                    <Generate add={this.onAddRandom} />
+                    <ListItem items={this.state.random}
+                        delete={this.onItemDelete} />
+                </View>
+                <PickerComponent/>
+                <ModalComponent/>
+            </ScrollView>
+        )
+    };
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
+        width: '100%',
+        paddingTop: 50,
+        marginBottom: 5
+    },
+    basicView: {
+        backgroundColor: 'green',
+        width: '100%',
+        marginBottom: 5,
+    },
+    basicText: {
+        fontSize: 20,
+        color: '#fff',
+        textAlign: 'center',
+        padding: 20
+    }
 });
