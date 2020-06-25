@@ -7,12 +7,14 @@ import Input from './input';
 import PickerComponent from './picker';
 import ModalComponent from './modal';
 import Expectations from './assets/images/expectations.jpg';
+// const Picsum = { url:'https://picsum.photos/100' };
+// const Picsum = { url: 'https://reactjs.org/logo-og.png' };
 import 'react-native-gesture-handler';
 
 export default class AppOrig extends Component {
     state = {
         nameOfApp: `Davo's awesome app`,
-        random: [42, 21, 666]
+        random: [42, 21, 66]
     }
 
     onAddRandom = () => {
@@ -37,22 +39,16 @@ export default class AppOrig extends Component {
         return (
             <ScrollView
                 style={{ width: '100%' }}
-                // onContentSizeChange={ (w,h)=> alert(w+', '+h)}
-                // onMomentumScrollBegin={ ()=> alert()}
-                // onMomentumScrollEnd={ ()=> alert('end')}
+            // onContentSizeChange={ (w,h)=> alert(w+', '+h)}
+            // onMomentumScrollBegin={ ()=> alert()}
+            // onMomentumScrollEnd={ ()=> alert('end')}
             >
 
-                <ImageBackground
-                    source={ Expectations }
-                    style={styles.pic}
-                    resizeMode="cover"
-                    // onLoadEnd={ () => alert('loading finished')}
-                    />
                 <Image
-                    source={{ url: 'https://picsum.photos/200' }}
+                    source={Expectations}
                     style={styles.pic}
                     resizeMode="cover"
-                    // onLoadEnd={ () => alert('loading finished')}
+                // onLoadEnd={ () => alert('loading finished')}
                 />
 
                 <View style={styles.container}>
@@ -97,9 +93,13 @@ const styles = StyleSheet.create({
         padding: 20
     },
     pic: {
-        width:'100%',
-        height:500,
-        marginTop:10,
-        marginBottom:5
+        width: '100%',
+        height: 500,
+        marginTop: 10,
+        marginBottom: 5
+    },
+    image: {
+        resizeMode: 'cover',
+        justifyContent: 'center'
     }
 });
