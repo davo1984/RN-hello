@@ -40,6 +40,10 @@ function HomeScreen({ navigation }) {
     );
 }
 
+function AddUser({ navigation }) {
+
+}
+
 function AppOrigScreen({ navigation }) {
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -65,6 +69,9 @@ function App() {
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Home">
                 <Stack.Screen name="Home" component={HomeScreen} />
+                <Stack.Screen name="AddUser" component={AddUser} />
+                <Stack.Screen name="ListNumber" component={ListNumber} />
+                <Stack.Screen name="AddUser" component={AddUser} />
                 <Stack.Screen name="AppOrig" component={AppOrigScreen} />
             </Stack.Navigator>
         </NavigationContainer>
